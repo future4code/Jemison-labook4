@@ -29,9 +29,3 @@ export class Unauthorized extends CustomError {
         super(401, "Não autorizado")
     }
 }
-
-export class InvalidPostId extends CustomError {
-    constructor(){
-        super(400, "Id de post inválido")
-    }
-}
