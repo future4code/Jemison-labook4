@@ -3,6 +3,9 @@ import cors from "cors"
 import knex from "knex"
 import dotenv from "dotenv"
 import Knex from "knex"
+// import { app } from './app';
+// import { userRouter } from './routes/userRouter';
+// import { postRouter } from './routes/postRouter';
 
 /**************************** CONFIG ******************************/
 
