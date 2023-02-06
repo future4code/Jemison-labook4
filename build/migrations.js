@@ -1,7 +1,8 @@
-import { connection } from "./index"
-
-connection
-   .raw(`
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("./index");
+index_1.connection
+    .raw(`
       CREATE TABLE IF NOT EXISTS labook_users(
          id VARCHAR(255) PRIMARY KEY,
          name VARCHAR(255) NOT NULL,
@@ -19,7 +20,8 @@ connection
          FOREIGN KEY (author_id) REFERENCES labook_users (id)
       )
    `)
-   .then(() => {
-    console.log(`Tables created successfully!`)
+    .then(() => {
+    console.log(`Tables created successfully!`);
 })
-.catch((error: any) => console.log(error.sqlMessage || error.message))
+    .catch((error) => console.log(error.sqlMessage || error.message));
+//# sourceMappingURL=migrations.js.map

@@ -1,30 +1,14 @@
-GET http://localhost:3003/user/getAll
+GET http://localhost:3306/user/getAll
 Content-Type: application/json
 
 ####
-POST http://localhost:3003/user/create
+POST http://localhost:3306/user/createUser
 Content-Type: application/json
 
 {
-    "name": "JuniorPrado2202",
-    "nickname": "Junim2202",
-    "email": "jr2220@.com",
-    "password": "123456",
-    "id": "kiaqsfkansf",
-    "vouQuebrarisso": true
+    "name": "Jamily",
+    "email": "jami102@bbb.com",
+    "password": "1234567"
 }
 
 ###
-GET http://localhost:3003/task/getAll
-Content-Type: application/json
-
-###
-POST http://localhost:3003/task
-Content-Type: application/json
-
-{
-    "title": "aula arquitetura II2",
-    "description": "aula top2",
-    "deadline": "13/10",
-    "authorId": "1674062402860"
-}

@@ -9,3 +9,9 @@ export interface LoginInputDTO { //Para logar um usuário
     password: string;
 }
 
+export interface CreateUser { //Para criar um usuário
+    id: string,
+    name: string,
+    email: string,
+    password: string
+ }

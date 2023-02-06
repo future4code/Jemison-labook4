@@ -1,4 +1,4 @@
-import { CustomError } from './CustomError';
+import { CustomError } from '../error/CustomError';
 
 export class InavalidPhoto extends CustomError {
     constructor() {
