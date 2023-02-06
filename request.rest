@@ -1,0 +1,14 @@
+GET http://localhost:3306/user/getAll
+Content-Type: application/json
+
+####
+POST http://localhost:3306/user/createUser
+Content-Type: application/json
+
+{
+    "name": "Jamily",
+    "email": "jami102@bbb.com",
+    "password": "1234567"
+}
+
+###
