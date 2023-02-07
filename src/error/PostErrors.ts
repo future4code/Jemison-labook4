@@ -1,4 +1,4 @@
-import { CustomError } from '../error/CustomError';
+import { CustomError } from './CustomError';
 
 export class InavalidPhoto extends CustomError {
     constructor() {
@@ -14,13 +14,7 @@ export class InvalidPostId extends CustomError {
 
 export class InvalideRequisition extends CustomError {
     constructor() {
-        super(400, "Invalid requisition")
-    }
-};
-
-export class InvalidType extends CustomError {
-    constructor() {
-        super(400, "Invalid type")
+        super(400, "Invalid requisition 1")
     }
 };
 
@@ -59,4 +53,22 @@ export class Unauthorized extends CustomError {
         super(401, "Unauthorized")
     }
 };
+
+export class NotFoundBody extends CustomError {
+    constructor() {
+        super(404, "Not found body")
+    }
+}
+
+export class IncompleteBody extends CustomError {
+    constructor() {
+        super(400, "Incomplete body")
+    }
+}
+
+export class InvalidType extends CustomError {
+    constructor() {
+        super(400,  "Invalid type. Please, insert 'normal' or 'event'")
+    }
+}
 

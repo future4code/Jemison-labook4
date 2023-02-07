@@ -2,7 +2,6 @@ export interface PostInputDTO {
     photo: string,
     description: string,
     type: string,
-    createdAt: Date,
     authorId: string
 }
 
@@ -11,6 +10,6 @@ export interface InsertPostDTO {
     photo: string,
     description: string,
     type: string,
-    createdAt: Date,
-    authorId: string
+    created_at: string,
+    author_id: string
 }

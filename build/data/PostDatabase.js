@@ -9,33 +9,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostDataBase = void 0;
+exports.PostDatabase = void 0;
 const CustomError_1 = require("../error/CustomError");
 const BaseDatabase_1 = require("./BaseDatabase");
-class PostDataBase extends BaseDatabase_1.BaseDatabase {
+class PostDatabase extends BaseDatabase_1.BaseDatabase {
     constructor() {
         super(...arguments);
         this.postTableName = "labook_posts";
-        this.createPost = (post) => __awaiter(this, void 0, void 0, function* () {
+        this.CreatePost = (post) => __awaiter(this, void 0, void 0, function* () {
             try {
-                PostDataBase.connection.initialize();
-                yield PostDataBase.connection.insert({
-                    id: post.id,
-                    photo: post.photo,
-                    description: post.description,
-                    type: post.type,
-                    created_at: post.createdAt,
-                    author_id: post.authorId
-                }).into(this.postTableName);
+                PostDatabase.connection.initialize();
+                yield PostDatabase.connection(this.postTableName)
+                    .insert(post);
             }
             catch (error) {
                 throw new CustomError_1.CustomError(error.statusCode, error.message);
             }
             finally {
-                PostDataBase.connection.destroy();
+                PostDatabase.connection.destroy();
+            }
+        });
+        this.GetAllPosts = () => __awaiter(this, void 0, void 0, function* () {
+            try {
+                PostDatabase.connection.initialize();
+                const allPosts = yield PostDatabase.connection.select('*')
+                    .from(this.postTableName);
+                return allPosts;
+            }
+            catch (err) {
+                throw new CustomError_1.CustomError(err.statusCode, err.message);
+            }
+            finally {
+                PostDatabase.connection.destroy();
             }
         });
     }
 }
-exports.PostDataBase = PostDataBase;
+exports.PostDatabase = PostDatabase;
 //# sourceMappingURL=PostDatabase.js.map

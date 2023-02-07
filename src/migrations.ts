@@ -1,5 +1,5 @@
-"use strict";
 // import { BaseDatabase } from "./data/BaseDatabase"
+
 // const createTables = async (): Promise<void> => {
 //       try {
 //          await BaseDatabase.connection.raw(`
@@ -9,6 +9,7 @@
 //                email VARCHAR(255) UNIQUE NOT NULL,
 //                password VARCHAR(255) NOT NULL
 //             );
+
 //             CREATE TABLE IF NOT EXISTS labook_posts(
 //                id VARCHAR(255) PRIMARY KEY,
 //                photo VARCHAR(255) NOT NULL,
@@ -24,4 +25,4 @@
 //          console.log(error.sqlMessage || error.message)
 //       }
 // }
-//# sourceMappingURL=migrations.js.map
+   

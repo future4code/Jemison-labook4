@@ -21,8 +21,7 @@ class UserController {
                     email: req.body.email,
                     password: req.body.password
                 };
-                const userBusiness = new UserBusiness_1.UserBusiness();
-                yield userBusiness.CreateUser(input);
+                const userBusiness = yield new UserBusiness_1.UserBusiness().CreateUser(input);
                 res.status(201).send({ message: "Usuário criado!" });
             }
             catch (error) {

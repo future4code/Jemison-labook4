@@ -11,9 +11,7 @@ export class UserController {
                email: req.body.email,
                password: req.body.password
             }
-            const userBusiness = new UserBusiness()
-            
-            await userBusiness.CreateUser(input)
+            const userBusiness = await new UserBusiness().CreateUser(input)
    
             res.status(201).send({ message: "Usuário criado!" })
          } catch (error: any) {

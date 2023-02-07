@@ -23,9 +23,9 @@ class UserBusiness {
                 if (!name || !email || !password) {
                     throw new UserErrors_1.BodyError();
                 }
-                // if (!input.email || input.email.indexOf("@")) {
-                //     throw new InvalidEmail()
-                // }
+                if (!input.email || input.email.indexOf("@") === -1) {
+                    throw new UserErrors_1.InvalidEmail();
+                }
                 if (!input.password || input.password.length < 6) {
                     throw new UserErrors_1.InvalidPassword();
                 }

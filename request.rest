@@ -6,9 +6,22 @@ POST http://localhost:3306/user/createUser
 Content-Type: application/json
 
 {
-    "name": "Jamily",
-    "email": "jami102@bbb.com",
-    "password": "1234567"
+    "name": "Douglas Werner",
+    "email": "doug02@bbb.com",
+    "password": "12345678"
 }
 
 ###
+GET http://localhost:3306/post/getAll
+content-type: application/json
+
+###
+POST http://localhost:3306/post/createPost
+Content-Type: application/json
+
+{
+    "photo": "https://picsum.photos/210/310",
+    "description": "teste 9",
+    "type": "normal",
+    "authorId": "1"
+}
