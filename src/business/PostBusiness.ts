@@ -1,9 +1,9 @@
 import { PostDatabase } from './../data/PostDatabase';
 import { PostInputDTO, InsertPostDTO } from "../model/postDTO";
 import { generateId } from "../services/idGenerator";
-import { IncompleteBody, InvalideRequisition, InvalidType, NotFoundBody, NotFoundPhoto } from '../error/PostErrors';
 import { CustomError } from '../error/CustomError';
 import moment from 'moment';
+import { IncompleteBody, InvalideRequisition, InvalidType, NotFoundBody, NotFoundPhoto } from '../error/PostErrors';
 
 
 export class PostBusiness {

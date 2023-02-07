@@ -37,7 +37,7 @@ class PostBusiness {
                     throw new PostErrors_1.InvalidType();
                 }
                 const id = (0, idGenerator_1.generateId)();
-                const createdAt = (0, moment_1.default)(new Date().toLocaleDateString()).format("YYYY-MM-DD HH:mm:ss").toString();
+                const createdAt = (0, moment_1.default)().format("YYYY-MM-DD HH:mm:ss").toString();
                 const newPost = {
                     id,
                     photo,
