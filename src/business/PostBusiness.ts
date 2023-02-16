@@ -59,5 +59,16 @@ export class PostBusiness {
             throw new InvalideRequisition();
         }
     }
+
+    public GetPostById = async (id: string) => {
+        try {
+            const postDatabase = new PostDatabase()
+            const post = await postDatabase.GetPostById(id);
+            return post;
+            
+        } catch (err: any) {
+            throw new CustomError(err.statusCode, err.message)
+        }
+    }
 }
 

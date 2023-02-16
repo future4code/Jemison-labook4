@@ -1,8 +1,7 @@
-import { Console } from 'console';
 import { Request, Response } from 'express';
 import { PostBusiness } from '../business/PostBusiness';
 import { CustomError } from '../error/CustomError';
-import { PostInputDTO } from '../model/postDTO';
+import { InsertPostDTO, PostInputDTO } from '../model/postDTO';
 
 export class PostController {
     public CreatePost = async (req: Request, res: Response) => {
@@ -23,7 +22,7 @@ export class PostController {
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
-            console.log(err)
+           
         }
     }
 
@@ -34,6 +33,29 @@ export class PostController {
             res.status(200).send(posts)
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
+        }
+    }
+
+    public GetPostById = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const id  = req.headers.authorization as string;
+
+            const post = await new PostBusiness().GetPostById(id)
+
+            const result: InsertPostDTO = {
+                id: post.id,
+                photo: post.photo,
+                description: post.description,
+                type: post.type,
+                created_at: post.created_at,
+                author_id: post.author_id
+            }
+        
+
+            res.status(200).send({result})
+        } catch (err: any) {
+            throw new CustomError(err.statusCode, err.message)
+            console.log(err)
         }
     }
 }

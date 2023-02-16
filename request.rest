@@ -25,3 +25,8 @@ Content-Type: application/json
     "type": "normal",
     "authorId": "1"
 }
+
+###
+GET http://localhost:3306/post//getById
+Content-Type: application/json
+Authorization: 0ef1fe82-9de4-4923-a524-228d1015dd25

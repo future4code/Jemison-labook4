@@ -32,9 +32,27 @@ class PostDatabase extends BaseDatabase_1.BaseDatabase {
         this.GetAllPosts = () => __awaiter(this, void 0, void 0, function* () {
             try {
                 PostDatabase.connection.initialize();
-                const allPosts = yield PostDatabase.connection.select('*')
-                    .from(this.postTableName);
+                const allPosts = yield PostDatabase.connection
+                    .select('*')
+                    .from(this.postTableName)
+                    .orderBy('created_at', 'desc');
                 return allPosts;
+            }
+            catch (err) {
+                throw new CustomError_1.CustomError(err.statusCode, err.message);
+            }
+            finally {
+                PostDatabase.connection.destroy();
+            }
+        });
+        this.GetPostById = (id) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                PostDatabase.connection.initialize();
+                const post = yield PostDatabase.connection
+                    .select('*')
+                    .from(this.postTableName)
+                    .where({ id });
+                return post[0];
             }
             catch (err) {
                 throw new CustomError_1.CustomError(err.statusCode, err.message);
