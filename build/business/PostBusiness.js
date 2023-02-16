@@ -15,9 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostBusiness = void 0;
 const PostDatabase_1 = require("./../data/PostDatabase");
 const idGenerator_1 = require("../services/idGenerator");
-const PostErrors_1 = require("../error/PostErrors");
 const CustomError_1 = require("../error/CustomError");
 const moment_1 = __importDefault(require("moment"));
+const PostErrors_1 = require("../error/PostErrors");
 class PostBusiness {
     constructor() {
         this.CreatePost = (input) => __awaiter(this, void 0, void 0, function* () {
@@ -37,7 +37,7 @@ class PostBusiness {
                     throw new PostErrors_1.InvalidType();
                 }
                 const id = (0, idGenerator_1.generateId)();
-                const createdAt = (0, moment_1.default)(new Date().toLocaleDateString()).format("YYYY-MM-DD HH:mm:ss").toString();
+                const createdAt = (0, moment_1.default)().format("YYYY-MM-DD HH:mm:ss").toString();
                 const newPost = {
                     id,
                     photo,
@@ -59,6 +59,16 @@ class PostBusiness {
             }
             catch (error) {
                 throw new PostErrors_1.InvalideRequisition();
+            }
+        });
+        this.GetPostById = (id) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const postDatabase = new PostDatabase_1.PostDatabase();
+                const post = yield postDatabase.GetPostById(id);
+                return post;
+            }
+            catch (err) {
+                throw new CustomError_1.CustomError(err.statusCode, err.message);
             }
         });
     }

@@ -1,9 +1,9 @@
 import { PostDatabase } from './../data/PostDatabase';
 import { PostInputDTO, InsertPostDTO } from "../model/postDTO";
 import { generateId } from "../services/idGenerator";
-import { IncompleteBody, InvalideRequisition, InvalidType, NotFoundBody, NotFoundPhoto } from '../error/PostErrors';
 import { CustomError } from '../error/CustomError';
 import moment from 'moment';
+import { IncompleteBody, InvalideRequisition, InvalidType, NotFoundBody, NotFoundPhoto } from '../error/PostErrors';
 
 
 export class PostBusiness {
@@ -57,6 +57,17 @@ export class PostBusiness {
             return postDataBase;
         } catch (error: any) {
             throw new InvalideRequisition();
+        }
+    }
+
+    public GetPostById = async (id: string) => {
+        try {
+            const postDatabase = new PostDatabase()
+            const post = await postDatabase.GetPostById(id);
+            return post;
+            
+        } catch (err: any) {
+            throw new CustomError(err.statusCode, err.message)
         }
     }
 }

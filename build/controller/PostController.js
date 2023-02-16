@@ -28,7 +28,6 @@ class PostController {
             }
             catch (err) {
                 throw new CustomError_1.CustomError(err.statusCode, err.message);
-                console.log(err);
             }
         });
         this.GetAllPosts = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -38,6 +37,25 @@ class PostController {
             }
             catch (err) {
                 throw new CustomError_1.CustomError(err.statusCode, err.message);
+            }
+        });
+        this.GetPostById = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = req.headers.authorization;
+                const post = yield new PostBusiness_1.PostBusiness().GetPostById(id);
+                const result = {
+                    id: post.id,
+                    photo: post.photo,
+                    description: post.description,
+                    type: post.type,
+                    created_at: post.created_at,
+                    author_id: post.author_id
+                };
+                res.status(200).send({ result });
+            }
+            catch (err) {
+                throw new CustomError_1.CustomError(err.statusCode, err.message);
+                console.log(err);
             }
         });
     }
