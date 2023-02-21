@@ -48,8 +48,8 @@ class PostController {
                     photo: post.photo,
                     description: post.description,
                     type: post.type,
-                    created_at: post.created_at,
-                    author_id: post.author_id
+                    createdAt: post.created_at,
+                    authorId: post.author_id
                 };
                 res.status(200).send({ result });
             }

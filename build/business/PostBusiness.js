@@ -36,10 +36,10 @@ class PostBusiness {
                 if (input.type !== "normal" && input.type !== "evento") {
                     throw new PostErrors_1.InvalidType();
                 }
-                const id = (0, idGenerator_1.generateId)();
+                const id = new idGenerator_1.generateId();
                 const createdAt = (0, moment_1.default)().format("YYYY-MM-DD HH:mm:ss").toString();
                 const newPost = {
-                    id,
+                    id: id.generateId(),
                     photo,
                     description,
                     type,

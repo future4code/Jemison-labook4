@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { PostBusiness } from '../business/PostBusiness';
 import { CustomError } from '../error/CustomError';
-import { InsertPostDTO, PostInputDTO } from '../model/postDTO';
+import { PostInputDTO } from '../model/postDTO';
+import { post } from '../model/post'
 
 export class PostController {
     public CreatePost = async (req: Request, res: Response) => {
@@ -42,13 +43,13 @@ export class PostController {
 
             const post = await new PostBusiness().GetPostById(id)
 
-            const result: InsertPostDTO = {
+            const result: post = {
                 id: post.id,
                 photo: post.photo,
                 description: post.description,
                 type: post.type,
-                created_at: post.created_at,
-                author_id: post.author_id
+                createdAt: post.created_at,
+                authorId: post.author_id
             }
         
 
