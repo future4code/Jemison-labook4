@@ -29,9 +29,9 @@ class UserBusiness {
                 if (!input.password || input.password.length < 6) {
                     throw new UserErrors_1.InvalidPassword();
                 }
-                const id = (0, idGenerator_1.generateId)();
+                const id = new idGenerator_1.generateId();
                 const newUser = {
-                    id,
+                    id: id.generateId(),
                     name,
                     email,
                     password

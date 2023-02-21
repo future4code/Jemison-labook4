@@ -10,5 +10,5 @@ const postController = new PostController_1.PostController();
 exports.postRouter = express_1.default.Router();
 exports.postRouter.post('/createPost', postController.CreatePost);
 exports.postRouter.get('/getAll', postController.GetAllPosts);
-exports.postRouter.get('/getById', postController.GetPostById);
+exports.postRouter.get('/getPostById', postController.GetPostById);
 //# sourceMappingURL=postRouter.js.map

@@ -1,3 +1,6 @@
+// -------- Endpoints - Users --------//
+
+
 GET http://localhost:3306/user/getAll
 Content-Type: application/json
 
@@ -6,10 +9,14 @@ POST http://localhost:3306/user/createUser
 Content-Type: application/json
 
 {
-    "name": "Douglas Werner",
-    "email": "doug02@bbb.com",
+    "id": "2",
+    "name": "Douglas Williams",
+    "email": "doug04@aaa.com",
     "password": "12345678"
 }
+
+
+// -------- Endpoints - Posts --------//
 
 ###
 GET http://localhost:3306/post/getAll
@@ -30,3 +37,19 @@ Content-Type: application/json
 GET http://localhost:3306/post//getById
 Content-Type: application/json
 Authorization: 0ef1fe82-9de4-4923-a524-228d1015dd25
+
+
+// -------- Endpoints - Friendships --------//
+
+###
+GET http://localhost:3306/friendship/getAll
+Content-Type: application/json
+
+###
+POST http://localhost:3306/friendship/createFriendship
+Content-Type: application/json
+
+{
+    "userId": "1",
+    "friendId": "15c1d40e-efb6-436a-bed2-497cb88f4c96"
+}
