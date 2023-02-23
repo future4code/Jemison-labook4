@@ -1,6 +1,6 @@
 import { BaseDatabase } from "./BaseDatabase";
 import { UserIdDTO } from "../model/userDTO";
-import Friendship from "../model/Friendship";
+import Friendship from "../model/friendship";
 
 
 export class FriendDatabase extends BaseDatabase {
