@@ -39,7 +39,7 @@ O deploy da API pode ser encontrado [aqui](https://labook-h1rb.onrender.com).
 
 [![Linkedin](https://img.shields.io/badge/-DouglasWerner-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/douglas-werner/)](https://www.linkedin.com/in/douglas-werner/) 
 
-[![Github Badge](https://img.shields.io/badge/-DouglasWerner-black?style=flat-square&logo=Github&logoColor=white&link=
+[![Github Badge](https://img.shields.io/badge/-DouglasWerner-black?style=flat-square&logo=Github&logoColor=white&link=https://github.com/DouglasWerner)](https://github.com/DouglasWerner)
     
 
 ## Licença
