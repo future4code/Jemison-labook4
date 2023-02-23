@@ -5,7 +5,7 @@ import { UserInputDTO, CreateUser, LoginInputDTO } from "../model/userDTO";
 import { generateId } from "../services/idGenerator";
 
 export class UserBusiness {
-    public CreateUser = async (input: UserInputDTO) => {
+    CreateUser = async (input: UserInputDTO) => {
         try {
             const userDatabase = new UserDatabase()
 
@@ -39,7 +39,7 @@ export class UserBusiness {
         }
     }
 
-    public GetAllUsers = async () => {
+    GetAllUsers = async () => {
 
         try {
             const userDatabase = new UserDatabase();
@@ -64,7 +64,7 @@ export class UserBusiness {
         }
     }
 
-    public login = async (input: LoginInputDTO) => {
+    login = async (input: LoginInputDTO) => {
         try {
             const userDatabase = new UserDatabase()
             const { email, password } = input

@@ -4,7 +4,7 @@ import { CustomError } from '../error/CustomError';
 import { UserInputDTO, LoginInputDTO } from '../model/userDTO';
 
 export class UserController {
-    public CreateUser = async (req: Request, res: Response) => {
+    CreateUser = async (req: Request, res: Response) => {
         try {
             const input: UserInputDTO = {
                name: req.body.name,
@@ -19,7 +19,7 @@ export class UserController {
          }
     }
 
-    public GetAllUsers = async (req: Request, res: Response): Promise<void> => {
+    GetAllUsers = async (req: Request, res: Response): Promise<void> => {
         try  {
             
             const users = await new UserBusiness().GetAllUsers();
@@ -30,7 +30,7 @@ export class UserController {
         }
     }
 
-    public Login = async (req: Request, res: Response) => {
+    Login = async (req: Request, res: Response) => {
         try {
             const input: LoginInputDTO = {
                 email: req.body.email,

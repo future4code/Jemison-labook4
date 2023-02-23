@@ -1,28 +1,10 @@
 import { Request, Response } from "express";
 import { FriendBusiness } from "../business/FriendBusiness";
 import { FriendshipInputDTO } from "../model/friendshipDTO";
+import { UserIdDTO } from "../model/userDTO";
 
 export class FriendController {
-    public Create = async (req: Request, res: Response) => {
-        try {
-
-            const { userId, friendId } = req.body
-
-            const input: FriendshipInputDTO = {
-                userId,
-                friendId
-            }
-
-            const friendBusiness = await new FriendBusiness().Create(input)
-
-            res.status(201).send({ message: "Friendship created successfully." });
-        } catch (err: any) {
-            res.status(err.statusCode || 400).send( err.message || err.sqlMessage );
-            console.log(err)
-        }
-    }
-
-    public GetAll = async (req: Request, res: Response): Promise<void> => {
+    GetAll = async (req: Request, res: Response): Promise<void> => {
         try {
             const friends = await new FriendBusiness().GetAll()
 
@@ -31,4 +13,34 @@ export class FriendController {
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
         }
     }
+
+    GetUserFriend = async (req: Request, res: Response): Promise<void> => {
+        try{
+            const input: UserIdDTO = {
+                id: req.params.id
+            }
+
+            const userFriend = await new FriendBusiness().GetUserfriends(input)
+            
+            res.status(200).send(userFriend)
+        } catch (err: any) {
+            res.status(err.statusCode && 400).send(err.message && err.sqlMessage)
+        }
+    }
+
+    Create = async (req: Request, res: Response): Promise<void> => {
+        try{
+            const input: FriendshipInputDTO = {
+                userId: req.params.user_id,
+                friendId: req.body.friendId
+            }
+            
+            const friendBusiness = await new FriendBusiness().Create(input)
+
+            res.status(201).send("Friend added.")
+        }catch(err: any){
+            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+        }
+    }
+
 }
