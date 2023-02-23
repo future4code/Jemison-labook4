@@ -4,7 +4,7 @@ import { UserDatabase } from "../data/UserDatabase";
 import { CustomError } from "../error/CustomError";
 import { FriendNotExisting, FriendshipsNotFound, MissingFriendId, MissingUserId, NotFoundBody, UserNotExisting } from "../error/FriendshipError";
 import { generateId } from "../services/idGenerator"
-import Friendship  from '../model/Friendship';
+import Friendship  from '../model/friendship';
 import { UserIdDTO } from '../model/userDTO';
 
 const id = generateId()
