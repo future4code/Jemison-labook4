@@ -1,1 +1,1 @@
-{"version":3,"file":"friendshipDTO.js","sourceRoot":"","sources":["../../src/model/friendshipDTO.ts"],"names":[],"mappings":";;;AAWA,MAAa,UAAU;IACnB,YACY,EAAU,EACV,OAAe,EACf,SAAiB;QAFjB,OAAE,GAAF,EAAE,CAAQ;QACV,YAAO,GAAP,OAAO,CAAQ;QACf,cAAS,GAAT,SAAS,CAAQ;IAC3B,CAAC;CACN;AAND,gCAMC"}
+{"version":3,"file":"friendshipDTO.js","sourceRoot":"","sources":["../../src/model/friendshipDTO.ts"],"names":[],"mappings":""}

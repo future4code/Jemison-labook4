@@ -1,8 +1,8 @@
-import { CreateFriendshipDTO, FriendshipInputDTO } from './../model/friendshipDTO';
+import { FriendshipInputDTO } from './../model/friendshipDTO';
 import { FriendDatabase } from "../data/FriendDatabase";
 import { UserDatabase } from "../data/UserDatabase";
 import { CustomError } from "../error/CustomError";
-import { FriendNotExisting, FriendshipsNotFound, MissingFriendId, MissingUserId, NotFoundBody, UnableToAddYourself, UserNotExisting } from "../error/FriendshipError";
+import { FriendNotExisting, FriendshipsNotFound, MissingFriendId, MissingUserId, NotFoundBody, UserNotExisting } from "../error/FriendshipError";
 import { generateId } from "../services/idGenerator"
 import Friendship  from '../model/Friendship';
 import { UserIdDTO } from '../model/userDTO';

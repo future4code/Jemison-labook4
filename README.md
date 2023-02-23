@@ -1,100 +1,49 @@
-# labook-template
-Repositório do projeto Labook
+### Labook
 
-/**************************** ENDPOINTS ******************************/
+## Sobre o projeto
+Projeto que visa a criação de uma rede social, onde os usuários podem criar posts, curtir posts, comentar posts, seguir amigos, entre outras funcionalidades.
 
-// app.post('/users', async (req: Request, res: Response) => {
-//    try {
-//       let message = "Success!"
-//       const { name, email, password } = req.body
+## Documentação da API
+A documentação da API pode ser encontrada [aqui](https://documenter.getpostman.com/view/15825729/Tzz7Pq7E).
 
-//       if (!name || !email || !password) {
-//          res.statusCode = 406
-//          message = '"name", "email" and "password" must be provided'
-//          throw new Error(message)
-//       }
+## Link do deploy
+O deploy da API pode ser encontrado [aqui](https://labook-h1rb.onrender.com).
 
-//       const id: string = Date.now().toString()
+## Tecnologias utilizadas
+    - Node.js
+    - Typescript
+    - Express
+    - MySQL
+    - Knex
+    - Dotenv
+    - Uuid
+    - Cors
 
-//       await connection('labook_users')
-//          .insert({
-//             id,
-//             name,
-//             email,
-//             password
-//          })
+## Como rodar o projeto
+### Pré-requisitos
+    - Node.js
+    - MySQL
 
-//       res.status(201).send({ message })
+### Passo a passo
+1. Clone o repositório
+2. Instale as dependências com `npm install`
+3. Crie um banco de dados MySQL
+4. Crie um arquivo `.env` na raiz do projeto e preencha as variáveis de ambiente com as informações do seu banco de dados
+5. Execute as migrations com `npm run migrate`
+6. Execute o projeto com `npm run dev`
 
-//    } catch (error:any) {
-//       res.statusCode = 400
-//       let message = error.sqlMessage || error.message
-//       res.send({ message })
-//    }
-// })
 
-// app.post('/post', async (req: Request, res: Response) => {
-//    try {
-//       let message = "Success!"
+## Desenvolvedor
 
-//       const { photo, description, type, authorId } = req.body
+### Douglas Werner
 
-//       const postId: string = Date.now().toString()
+[![Linkedin](https://img.shields.io/badge/-DouglasWerner-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/douglas-werner/)](https://www.linkedin.com/in/douglas-werner/) 
 
-//       await connection("labook_posts")
-//          .insert({
-//             id:postId,
-//             photo,
-//             description,
-//             type,
-//             author_id: authorId
-//          })
+[![Github Badge](https://img.shields.io/badge/-DouglasWerner-black?style=flat-square&logo=Github&logoColor=white&link=
+    
 
-//       res.status(201).send({ message })
+## Licença
+[MIT](https://choosealicense.com/licenses/mit/)
 
-//    } catch (error:any) {
-//       let message = error.sqlMessage || error.message
-//       res.statusCode = 400
-//       res.send({ message })
-//    }
-// })
 
-// app.get('/posts/:id', async (req: Request, res: Response) => {
-//    try {
-//       let message = "Success!"
 
-//       const { id } = req.params
-
-//       const queryResult: any = await connection("labook_posts")
-//          .select("*")
-//          .where({ id })
-
-//       if (!queryResult[0]) {
-//          res.statusCode = 404
-//          message = "Post not found"
-//          throw new Error(message)
-//       }
-
-//       const post: post = {
-//          id: queryResult[0].id,
-//          photo: queryResult[0].photo,
-//          description: queryResult[0].description,
-//          type: queryResult[0].type,
-//          createdAt: queryResult[0].created_at,
-//          authorId: queryResult[0].author_id,
-//       }
-
-//       res.status(200).send({ message, post })
-
-//    } catch (error:any) {
-//       let message = error.sqlMessage || error.message
-//       res.statusCode = 400
-//       res.send({ message })
-//    }
-// })
-
-// /**************************** SERVER INIT ******************************/
-
-// app.listen(3003, () => {
-//    console.log("Server running on port 3003")
-// })

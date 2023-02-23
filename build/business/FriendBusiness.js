@@ -8,6 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FriendBusiness = void 0;
 const FriendDatabase_1 = require("../data/FriendDatabase");
@@ -15,53 +18,12 @@ const UserDatabase_1 = require("../data/UserDatabase");
 const CustomError_1 = require("../error/CustomError");
 const FriendshipError_1 = require("../error/FriendshipError");
 const idGenerator_1 = require("../services/idGenerator");
-const id = new idGenerator_1.generateId();
+const Friendship_1 = __importDefault(require("../model/Friendship"));
+const id = (0, idGenerator_1.generateId)();
 const friendDatabase = new FriendDatabase_1.FriendDatabase();
 const userDatabase = new UserDatabase_1.UserDatabase();
 class FriendBusiness {
     constructor() {
-        this.Create = (input) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                if (input.userId === ":user_id") {
-                    throw new FriendshipError_1.MissingUserId();
-                }
-                if (!input.friendId) {
-                    throw new FriendshipError_1.MissingFriendId();
-                }
-                if (input.userId === input.friendId) {
-                    throw new CustomError_1.CustomError(409, "Unable to add yourself.");
-                }
-                const allUsers = yield userDatabase.GetAllUsers();
-                const userExisting = allUsers.filter(user => user.id === input.userId);
-                if (userExisting.length < 1) {
-                    throw new FriendshipError_1.UserNotExisting();
-                }
-                const userFriendExisting = allUsers.filter(userFriend => userFriend.id === input.friendId);
-                if (userFriendExisting.length < 1) {
-                    throw new FriendshipError_1.FriendNotExisting();
-                }
-                const friendshipOne = {
-                    id: id.generateId(),
-                    user_id: input.userId,
-                    friend_id: input.friendId
-                };
-                const friendshipTwo = {
-                    id: id.generateId(),
-                    user_id: input.friendId,
-                    friend_id: input.userId
-                };
-                const allFriendships = yield friendDatabase.GetAll();
-                for (let friend of allFriendships) {
-                    if (input.userId === friend.user_id && friend.friend_id === input.friendId) {
-                        throw new CustomError_1.CustomError(409, "Friend already added.");
-                    }
-                }
-                yield friendDatabase.Create(friendshipOne, friendshipTwo);
-            }
-            catch (err) {
-                throw new CustomError_1.CustomError(err.statusCode, err.message);
-            }
-        });
         this.GetAll = () => __awaiter(this, void 0, void 0, function* () {
             try {
                 const friendships = yield friendDatabase.GetAll();
@@ -72,6 +34,56 @@ class FriendBusiness {
             }
             catch (err) {
                 throw new CustomError_1.CustomError(err.statusCode, err.message);
+            }
+        });
+        this.GetUserfriends = (input) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const friend = yield friendDatabase.GetAll();
+                if (friend.length < 1) {
+                    throw new CustomError_1.CustomError(400, "There is nothing here");
+                }
+                return yield friendDatabase.GetUserfriends(input);
+            }
+            catch (err) {
+                throw new CustomError_1.CustomError(err.statusCode, err.sqlMessage);
+            }
+        });
+        this.Create = (input) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!input) {
+                    throw new FriendshipError_1.NotFoundBody();
+                }
+                if (input.userId === ":user_id") {
+                    throw new FriendshipError_1.MissingUserId();
+                }
+                if (!input.friendId) {
+                    throw new FriendshipError_1.MissingFriendId();
+                }
+                if (input.userId === input.friendId) {
+                    throw new CustomError_1.CustomError(409, "Unable to add yourself.");
+                }
+                const firstFriend = new Friendship_1.default(id, input.userId, input.friendId);
+                const secondFriend = new Friendship_1.default(id, input.friendId, input.userId);
+                const allUsers = yield userDatabase.GetAllUsers();
+                const userExisting = allUsers.filter(user => user.id === input.userId);
+                if (userExisting.length < 1) {
+                    throw new FriendshipError_1.UserNotExisting();
+                }
+                const userFriendExisting = allUsers.filter(userFriend => userFriend.id === input.friendId);
+                if (userFriendExisting.length < 1) {
+                    throw new FriendshipError_1.FriendNotExisting();
+                }
+                const allFriendships = yield friendDatabase.GetAll();
+                for (let friend of allFriendships) {
+                    if (input.userId === friend.user_id && friend.friend_id === input.friendId) {
+                        throw new CustomError_1.CustomError(409, "Friend already added.");
+                    }
+                }
+                yield friendDatabase.Create(firstFriend, secondFriend);
+            }
+            catch (err) {
+                throw new CustomError_1.CustomError(err.statusCode, err.message);
+                console.log(err);
             }
         });
     }

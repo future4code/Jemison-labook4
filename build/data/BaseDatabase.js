@@ -15,8 +15,8 @@ BaseDatabase.connection = (0, knex_1.default)({
     connection: {
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
-        password: process.env.DB_PASS,
         database: process.env.DB_NAME,
+        password: process.env.DB_PASS,
         port: Number(process.env.PORT),
         multipleStatements: true
     }

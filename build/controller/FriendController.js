@@ -13,6 +13,27 @@ exports.FriendController = void 0;
 const FriendBusiness_1 = require("../business/FriendBusiness");
 class FriendController {
     constructor() {
+        this.GetAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const friends = yield new FriendBusiness_1.FriendBusiness().GetAll();
+                res.status(200).send(friends);
+            }
+            catch (err) {
+                res.status(err.statusCode || 400).send(err.message || err.sqlMessage);
+            }
+        });
+        this.GetUserFriend = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const input = {
+                    id: req.params.id
+                };
+                const userFriend = yield new FriendBusiness_1.FriendBusiness().GetUserfriends(input);
+                res.status(200).send(userFriend);
+            }
+            catch (err) {
+                res.status(err.statusCode && 400).send(err.message && err.sqlMessage);
+            }
+        });
         this.Create = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const input = {
@@ -21,15 +42,6 @@ class FriendController {
                 };
                 const friendBusiness = yield new FriendBusiness_1.FriendBusiness().Create(input);
                 res.status(201).send("Friend added.");
-            }
-            catch (err) {
-                res.status(err.statusCode || 400).send(err.message || err.sqlMessage);
-            }
-        });
-        this.GetAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const friends = yield new FriendBusiness_1.FriendBusiness().GetAll();
-                res.status(200).send(friends);
             }
             catch (err) {
                 res.status(err.statusCode || 400).send(err.message || err.sqlMessage);

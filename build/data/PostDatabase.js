@@ -10,56 +10,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostDatabase = void 0;
-const CustomError_1 = require("../error/CustomError");
 const BaseDatabase_1 = require("./BaseDatabase");
 class PostDatabase extends BaseDatabase_1.BaseDatabase {
     constructor() {
         super(...arguments);
-        this.postTableName = "labook_posts";
+        this.TABLE = "labook_posts";
         this.CreatePost = (post) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                PostDatabase.connection.initialize();
-                yield PostDatabase.connection(this.postTableName)
-                    .insert(post);
-            }
-            catch (error) {
-                throw new CustomError_1.CustomError(error.statusCode, error.message);
-            }
-            finally {
-                PostDatabase.connection.destroy();
-            }
+            return yield PostDatabase.connection(this.TABLE)
+                .insert(post);
         });
         this.GetAllPosts = () => __awaiter(this, void 0, void 0, function* () {
-            try {
-                PostDatabase.connection.initialize();
-                const allPosts = yield PostDatabase.connection
-                    .select('*')
-                    .from(this.postTableName)
-                    .orderBy('created_at', 'desc');
-                return allPosts;
-            }
-            catch (err) {
-                throw new CustomError_1.CustomError(err.statusCode, err.message);
-            }
-            finally {
-                PostDatabase.connection.destroy();
-            }
+            const allPosts = yield PostDatabase.connection
+                .select('*')
+                .from(this.TABLE)
+                .orderBy('created_at', 'desc', '5');
+            return allPosts;
         });
         this.GetPostById = (id) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                PostDatabase.connection.initialize();
-                const post = yield PostDatabase.connection
-                    .select('*')
-                    .from(this.postTableName)
-                    .where({ id });
-                return post[0];
-            }
-            catch (err) {
-                throw new CustomError_1.CustomError(err.statusCode, err.message);
-            }
-            finally {
-                PostDatabase.connection.destroy();
-            }
+            const post = yield PostDatabase.connection
+                .select('*')
+                .from(this.TABLE)
+                .where({ id });
+            return post[0];
         });
     }
 }

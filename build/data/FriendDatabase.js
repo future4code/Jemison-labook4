@@ -15,11 +15,16 @@ class FriendDatabase extends BaseDatabase_1.BaseDatabase {
     constructor() {
         super(...arguments);
         this.TABLE = "labook_friendships";
-        this.Create = (friendshipOne, friendshipTwo) => __awaiter(this, void 0, void 0, function* () {
-            yield FriendDatabase.connection(this.TABLE).insert([friendshipOne, friendshipTwo]);
-        });
         this.GetAll = () => __awaiter(this, void 0, void 0, function* () {
             return yield FriendDatabase.connection(this.TABLE).select('*');
+        });
+        this.GetUserfriends = (input) => __awaiter(this, void 0, void 0, function* () {
+            return yield FriendDatabase.connection(this.TABLE)
+                .select("*")
+                .whereLike("labook_friendships.user_id", input.id);
+        });
+        this.Create = (firstFriend, secondFriend) => __awaiter(this, void 0, void 0, function* () {
+            yield FriendDatabase.connection().insert([firstFriend || secondFriend]).into(this.TABLE);
         });
     }
 }

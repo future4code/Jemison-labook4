@@ -8,6 +8,6 @@ const express_1 = __importDefault(require("express"));
 const FriendController_1 = require("../controller/FriendController");
 const friendController = new FriendController_1.FriendController();
 exports.friendshipRouter = express_1.default.Router();
-exports.friendshipRouter.post('/createFriendship/:user_id', friendController.Create);
+exports.friendshipRouter.post('/:user_id', friendController.Create);
 exports.friendshipRouter.get('/getAll', friendController.GetAll);
 //# sourceMappingURL=friendshipRouter.js.map
