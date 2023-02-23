@@ -9,9 +9,9 @@ POST http://localhost:3306/user/createUser
 Content-Type: application/json
 
 {
-    "id": "2",
-    "name": "Douglas Williams",
-    "email": "doug04@aaa.com",
+    "id": "3",
+    "name": "Douglas Will",
+    "email": "doug05@aaa.com",
     "password": "12345678"
 }
 
@@ -46,10 +46,9 @@ GET http://localhost:3306/friendship/getAll
 Content-Type: application/json
 
 ###
-POST http://localhost:3306/friendship/createFriendship
+POST http://localhost:3306/friendship/1
 Content-Type: application/json
 
 {
-    "userId": "1",
-    "friendId": "15c1d40e-efb6-436a-bed2-497cb88f4c96"
+    "friendId": "17d8bcdb-33ab-46bc-8356-3794c5db9bd6"
 }

@@ -5,5 +5,5 @@ const friendController = new FriendController();
 
 export const friendshipRouter = express.Router();
 
-friendshipRouter.post('/createFriendship', friendController.Create);
+friendshipRouter.post('/:user_id', friendController.Create);
 friendshipRouter.get('/getAll', friendController.GetAll);

@@ -5,7 +5,7 @@ import { PostInputDTO } from '../model/postDTO';
 import { post } from '../model/post'
 
 export class PostController {
-    public CreatePost = async (req: Request, res: Response) => {
+    CreatePost = async (req: Request, res: Response) => {
         try {
 
             const { photo, description, type, authorId } = req.body
@@ -27,7 +27,7 @@ export class PostController {
         }
     }
 
-    public GetAllPosts = async (req: Request, res: Response): Promise<void> => { 
+    GetAllPosts = async (req: Request, res: Response): Promise<void> => { 
         try {
             const posts = await new PostBusiness().GetAllPosts();
 
@@ -37,7 +37,7 @@ export class PostController {
         }
     }
 
-    public GetPostById = async (req: Request, res: Response): Promise<void> => {
+    GetPostById = async (req: Request, res: Response): Promise<void> => {
         try {
             const id  = req.headers.authorization as string;
 

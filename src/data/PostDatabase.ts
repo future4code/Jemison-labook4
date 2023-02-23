@@ -4,49 +4,26 @@ import { InsertPostDTO } from "../model/postDTO";
 
 
 export class PostDatabase extends BaseDatabase {
-    private postTableName = "labook_posts";
+    TABLE = "labook_posts";
 
-    public CreatePost = async (post: InsertPostDTO) => {
-        try {
-            PostDatabase.connection.initialize()
-            await PostDatabase.connection(this.postTableName)
-            .insert(post)
-        } catch (error: any) {
-            throw new CustomError(error.statusCode, error.message)
-        } finally {
-            PostDatabase.connection.destroy()
-        }
+    CreatePost = async (post: InsertPostDTO) => {
+        return await PostDatabase.connection(this.TABLE)
+        .insert(post)
     }
 
-    public GetAllPosts = async () => {
-        try {
-            PostDatabase.connection.initialize();
+    GetAllPosts = async () => {
             const allPosts = await PostDatabase.connection
             .select('*')
-            .from(this.postTableName)
-            .orderBy('created_at', 'desc')
+            .from(this.TABLE)
+            .orderBy('created_at', 'desc', '5')
             return allPosts;
-        } catch (err: any) {
-            throw new CustomError(err.statusCode, err.message)
-        } finally {
-            PostDatabase.connection.destroy();
-        }
     }
 
-    public GetPostById = async (id: string) => {
-        try {
-            PostDatabase.connection.initialize();
+    GetPostById = async (id: string) => {
             const post = await PostDatabase.connection
             .select('*')
-            .from(this.postTableName)
+            .from(this.TABLE)
             .where({ id });
-            
             return post[0];
-            
-        } catch (err: any) {
-            throw new CustomError(err.statusCode, err.message)
-        } finally {
-            PostDatabase.connection.destroy();
-        }
     }
 }

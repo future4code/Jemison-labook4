@@ -7,7 +7,7 @@ import { IncompleteBody, InvalideRequisition, InvalidType, NotFoundBody, NotFoun
 
 
 export class PostBusiness {
-    public CreatePost = async (input: PostInputDTO) => {
+    CreatePost = async (input: PostInputDTO) => {
         try {
             const postDatabase = new PostDatabase()
 
@@ -50,7 +50,7 @@ export class PostBusiness {
         }
     }
 
-    public GetAllPosts = async () => {
+    GetAllPosts = async () => {
         try {
             const postDataBase = await new PostDatabase().GetAllPosts();
 
@@ -60,7 +60,7 @@ export class PostBusiness {
         }
     }
 
-    public GetPostById = async (id: string) => {
+    GetPostById = async (id: string) => {
         try {
             const postDatabase = new PostDatabase()
             const post = await postDatabase.GetPostById(id);

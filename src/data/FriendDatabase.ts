@@ -1,24 +1,23 @@
-import { CustomError } from "../error/CustomError";
-import { CreateFriendshipDTO } from "../model/friendshipDTO";
 import { BaseDatabase } from "./BaseDatabase";
+import { UserIdDTO } from "../model/userDTO";
+import Friendship from "../model/Friendship";
 
 
 export class FriendDatabase extends BaseDatabase {
     TABLE = "labook_friendships";
-
-    public Create = async (friend: CreateFriendshipDTO) => {
-        try {
-            FriendDatabase.connection.initialize();
-            await FriendDatabase.connection(this.TABLE)
-            .insert(friend)
-        } catch (err: any) {
-            throw new CustomError(err.statusCode, err.message);
-        } finally {
-            FriendDatabase.connection.destroy();
-        }
-    }
-
-    public GetAll = async () => {
+    
+    GetAll = async () => {
         return await FriendDatabase.connection(this.TABLE).select('*')
     }
+
+    GetUserfriends = async (input: UserIdDTO) => {
+        return await FriendDatabase.connection(this.TABLE)
+        .select("*")
+        .whereLike("labook_friendships.user_id", input.id)
+    }
+
+    Create = async (firstFriend: Friendship, secondFriend: Friendship) => {
+        await FriendDatabase.connection().insert([firstFriend || secondFriend]).into(this.TABLE)
+    }
+
 }
