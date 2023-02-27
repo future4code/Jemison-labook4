@@ -4,10 +4,14 @@
 Projeto que visa a criação de uma rede social, onde os usuários podem criar posts, curtir posts, comentar posts, seguir amigos, entre outras funcionalidades.
 
 ## Documentação da API
-A documentação da API pode ser encontrada [aqui](https://documenter.getpostman.com/view/15825729/Tzz7Pq7E).
+    - A documentação da API pode ser encontrada [aqui]().
 
 ## Link do deploy
-O deploy da API pode ser encontrado [aqui](https://labook-h1rb.onrender.com).
+    - O deploy da API pode ser encontrado [aqui](https://labook-h1rb.onrender.com).
+
+## Endpoints
+
+
 
 ## Tecnologias utilizadas
     - Node.js
@@ -29,8 +33,8 @@ O deploy da API pode ser encontrado [aqui](https://labook-h1rb.onrender.com).
 2. Instale as dependências com `npm install`
 3. Crie um banco de dados MySQL
 4. Crie um arquivo `.env` na raiz do projeto e preencha as variáveis de ambiente com as informações do seu banco de dados
-5. Execute as migrations com `npm run migrate`
-6. Execute o projeto com `npm run dev`
+5. Execute as migrations com `npm run migrations`
+6. Execute o projeto com `npm run start` ou `npm run dev`
 
 
 ## Desenvolvedor
