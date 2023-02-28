@@ -95,15 +95,11 @@ export class FriendBusiness {
            
         }catch(err: any){
             throw new CustomError(err.statusCode, err.message)  
-            console.log(err)
         }
     }
     
     UndoFriends = async (input: FriendshipInputDTO): Promise<void> => {
         try{
-            if (!input) {
-                throw new NotFoundBody()
-            }
 
             if(!input.friendId){
                 throw new NotFoundBody()
@@ -132,7 +128,7 @@ export class FriendBusiness {
                 throw new FriendshipsNotFound()
             }
 
-            if(friendshipExisting.length > 1){
+            if(friendshipExisting.length < 1){
                 throw new CustomError(409, "Something went wrong.")
             }
 
@@ -140,6 +136,7 @@ export class FriendBusiness {
 
         } catch (err: any){
             throw new CustomError(err.statusCode, err.message)
+            console.log(err.statusCode && err.message)
         }
     }
 

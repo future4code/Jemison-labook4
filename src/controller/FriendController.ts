@@ -56,6 +56,7 @@ export class FriendController {
             res.status(200).send("Friendship undone.")
         } catch (err: any){
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            console.log(err)
         }
     }
 

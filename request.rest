@@ -54,7 +54,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE https://labook-h1rb.onrender.com/friendship/1
+DELETE http://localhost:3306/friendship/1
 Content-Type: application/json
 
 {
