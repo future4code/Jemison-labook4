@@ -4,6 +4,7 @@ import { CustomError } from '../error/CustomError';
 import { PostInputDTO } from '../model/postDTO';
 import { post } from '../model/post'
 
+
 export class PostController {
     CreatePost = async (req: Request, res: Response) => {
         try {

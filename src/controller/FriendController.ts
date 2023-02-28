@@ -3,10 +3,11 @@ import { FriendBusiness } from "../business/FriendBusiness";
 import { FriendshipInputDTO } from "../model/friendshipDTO";
 import { UserIdDTO } from "../model/userDTO";
 
+const  friendBusiness = new FriendBusiness()
 export class FriendController {
     GetAll = async (req: Request, res: Response): Promise<void> => {
         try {
-            const friends = await new FriendBusiness().GetAll()
+            const friends = await friendBusiness.GetAll()
 
             res.status(200).send(friends)
         } catch (err: any) {
@@ -20,7 +21,7 @@ export class FriendController {
                 id: req.params.id
             }
 
-            const userFriend = await new FriendBusiness().GetUserfriends(input)
+            const userFriend = await friendBusiness.GetUserfriends(input)
             
             res.status(200).send(userFriend)
         } catch (err: any) {
@@ -35,7 +36,7 @@ export class FriendController {
                 friendId: req.body.friendId
             }
             
-            const friendBusiness = await new FriendBusiness().Create(input)
+            await friendBusiness.Create(input)
 
             res.status(201).send("Friend added.")
         }catch(err: any){
