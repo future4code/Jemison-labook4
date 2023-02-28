@@ -1,10 +1,10 @@
 ### Labook
 
 ## Sobre o projeto
-Projeto que visa a criação de uma rede social, onde os usuários podem criar posts, curtir posts, comentar posts, seguir amigos, entre outras funcionalidades.
+Projeto que visa a criação de uma rede social, onde os usuários podem criar posts, seguir amigos, entre outras funcionalidades.
 
 ## Documentação da API
-A documentação da API pode ser encontrada [aqui](https://documenter.getpostman.com/view/15825729/Tzz7Pq7E).
+A documentação da API pode ser encontrada [aqui](https://documenter.getpostman.com/view/22370646/2s93CRKrRs).
 
 ## Link do deploy
 O deploy da API pode ser encontrado [aqui](https://labook-h1rb.onrender.com).

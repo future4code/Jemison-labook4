@@ -46,7 +46,7 @@ GET https://labook-h1rb.onrender.com/friendship/getAll
 Content-Type: application/json
 
 ###
-POST https://labook-h1rb.onrender.com/friendship/1
+POST https://labook-h1rb.onrender.com/friendship/2
 Content-Type: application/json
 
 {
@@ -54,7 +54,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3306/friendship/1
+DELETE https://labook-h1rb.onrender.com/friendship/1
 Content-Type: application/json
 
 {
