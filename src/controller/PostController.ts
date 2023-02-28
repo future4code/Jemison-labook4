@@ -39,7 +39,7 @@ export class PostController {
 
     GetPostById = async (req: Request, res: Response): Promise<void> => {
         try {
-            const id  = req.headers.authorization as string;
+            const id = req.params.id;
 
             const post = await new PostBusiness().GetPostById(id)
 
