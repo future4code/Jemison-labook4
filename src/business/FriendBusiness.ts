@@ -98,5 +98,49 @@ export class FriendBusiness {
             console.log(err)
         }
     }
+    
+    UndoFriends = async (input: FriendshipInputDTO): Promise<void> => {
+        try{
+            if (!input) {
+                throw new NotFoundBody()
+            }
+
+            if(!input.friendId){
+                throw new NotFoundBody()
+            }
+
+            if(input.userId === ":user_id"){
+                throw new MissingUserId()
+            }
+
+            const allUsers = await userDatabase.GetAllUsers()
+
+            const userExisting = allUsers.filter(user => user.id === input.userId)
+            if(userExisting.length < 1){
+                throw new UserNotExisting()
+            }  
+            
+            const userFriendExisting = allUsers.filter(userFriend => userFriend.id === input.friendId)
+            if(userFriendExisting.length < 1){
+                throw new FriendNotExisting()
+            }
+
+            const allFriendships = await friendDatabase.GetAll()
+
+            const friendshipExisting = allFriendships.filter(friendship => friendship.user_id === input.userId && friendship.friend_id === input.friendId)
+            if(friendshipExisting.length < 1){
+                throw new FriendshipsNotFound()
+            }
+
+            if(friendshipExisting.length > 1){
+                throw new CustomError(409, "Something went wrong.")
+            }
+
+            await friendDatabase.UndoFriends(input)
+
+        } catch (err: any){
+            throw new CustomError(err.statusCode, err.message)
+        }
+    }
 
 }
