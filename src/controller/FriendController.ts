@@ -42,5 +42,20 @@ export class FriendController {
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
         }
     }
+    
+    UndoFriends = async (req: Request, res: Response): Promise<void> => {
+        try{
+            const input = {
+                userId: req.params.user_id,
+                friendId: req.body.friendId
+            }
+
+            await friendBusiness.UndoFriends(input)
+
+            res.status(200).send("Friendship undone.")
+        } catch (err: any){
+            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+        }
+    }
 
 }
