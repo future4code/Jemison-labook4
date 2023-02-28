@@ -26,6 +26,14 @@ class FriendDatabase extends BaseDatabase_1.BaseDatabase {
         this.Create = (firstFriend, secondFriend) => __awaiter(this, void 0, void 0, function* () {
             yield FriendDatabase.connection().insert([firstFriend || secondFriend]).into(this.TABLE);
         });
+        this.UndoFriends = (input) => __awaiter(this, void 0, void 0, function* () {
+            yield FriendDatabase.connection(this.TABLE)
+                .whereLike("labook_friendships.user_id", input.userId)
+                .andWhereLike("labook_friendships.user_id", input.friendId)
+                .andWhereLike("labook_friendships.friend_id", input.userId)
+                .orWhereLike("labook_friendships.user_id", input.friendId)
+                .del();
+        });
     }
 }
 exports.FriendDatabase = FriendDatabase;

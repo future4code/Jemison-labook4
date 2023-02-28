@@ -7,3 +7,4 @@ export const friendshipRouter = express.Router();
 
 friendshipRouter.post('/:user_id', friendController.Create);
 friendshipRouter.get('/getAll', friendController.GetAll);
+friendshipRouter.delete('/:user_id', friendController.UndoFriends)

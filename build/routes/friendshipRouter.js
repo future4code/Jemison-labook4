@@ -10,4 +10,5 @@ const friendController = new FriendController_1.FriendController();
 exports.friendshipRouter = express_1.default.Router();
 exports.friendshipRouter.post('/:user_id', friendController.Create);
 exports.friendshipRouter.get('/getAll', friendController.GetAll);
+exports.friendshipRouter.delete('/:user_id', friendController.UndoFriends);
 //# sourceMappingURL=friendshipRouter.js.map

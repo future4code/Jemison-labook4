@@ -11,11 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FriendController = void 0;
 const FriendBusiness_1 = require("../business/FriendBusiness");
+const friendBusiness = new FriendBusiness_1.FriendBusiness();
 class FriendController {
     constructor() {
         this.GetAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const friends = yield new FriendBusiness_1.FriendBusiness().GetAll();
+                const friends = yield friendBusiness.GetAll();
                 res.status(200).send(friends);
             }
             catch (err) {
@@ -40,8 +41,21 @@ class FriendController {
                     userId: req.params.user_id,
                     friendId: req.body.friendId
                 };
-                const friendBusiness = yield new FriendBusiness_1.FriendBusiness().Create(input);
+                yield friendBusiness.Create(input);
                 res.status(201).send("Friend added.");
+            }
+            catch (err) {
+                res.status(err.statusCode || 400).send(err.message || err.sqlMessage);
+            }
+        });
+        this.UndoFriends = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const input = {
+                    userId: req.params.user_id,
+                    friendId: req.body.friendId
+                };
+                yield friendBusiness.UndoFriends(input);
+                res.status(200).send("Friendship undone.");
             }
             catch (err) {
                 res.status(err.statusCode || 400).send(err.message || err.sqlMessage);

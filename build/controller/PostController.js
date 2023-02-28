@@ -41,7 +41,7 @@ class PostController {
         });
         this.GetPostById = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = req.headers.authorization;
+                const id = req.params.id;
                 const post = yield new PostBusiness_1.PostBusiness().GetPostById(id);
                 const result = {
                     id: post.id,

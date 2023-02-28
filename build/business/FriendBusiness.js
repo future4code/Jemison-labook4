@@ -86,6 +86,40 @@ class FriendBusiness {
                 console.log(err);
             }
         });
+        this.UndoFriends = (input) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!input) {
+                    throw new FriendshipError_1.NotFoundBody();
+                }
+                if (!input.friendId) {
+                    throw new FriendshipError_1.NotFoundBody();
+                }
+                if (input.userId === ":user_id") {
+                    throw new FriendshipError_1.MissingUserId();
+                }
+                const allUsers = yield userDatabase.GetAllUsers();
+                const userExisting = allUsers.filter(user => user.id === input.userId);
+                if (userExisting.length < 1) {
+                    throw new FriendshipError_1.UserNotExisting();
+                }
+                const userFriendExisting = allUsers.filter(userFriend => userFriend.id === input.friendId);
+                if (userFriendExisting.length < 1) {
+                    throw new FriendshipError_1.FriendNotExisting();
+                }
+                const allFriendships = yield friendDatabase.GetAll();
+                const friendshipExisting = allFriendships.filter(friendship => friendship.user_id === input.userId && friendship.friend_id === input.friendId);
+                if (friendshipExisting.length < 1) {
+                    throw new FriendshipError_1.FriendshipsNotFound();
+                }
+                if (friendshipExisting.length > 1) {
+                    throw new CustomError_1.CustomError(409, "Something went wrong.");
+                }
+                yield friendDatabase.UndoFriends(input);
+            }
+            catch (err) {
+                throw new CustomError_1.CustomError(err.statusCode, err.message);
+            }
+        });
     }
 }
 exports.FriendBusiness = FriendBusiness;
